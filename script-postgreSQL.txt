@@ -33,5 +33,5 @@ cargaHoraria INT NOT NULL,
 atividadeDesenvolvida ATIV,
 dataSubmissao DATE NOT NULL,
 idAluno INT NOT NULL,
-FOREIGN KEY (idAluno) REFERENCES Aluno(idAluno)
+FOREIGN KEY (idAluno) REFERENCES Alunos(idAluno)
 );
