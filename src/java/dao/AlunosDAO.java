@@ -9,6 +9,6 @@ package dao;
  *
  * @author cassi
  */
-public class AlunosDAO {
+interface AlunosDAO {
    
 }
