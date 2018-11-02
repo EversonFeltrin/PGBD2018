@@ -5,7 +5,9 @@
  */
 package dao;
 
-import org.omg.CORBA.portable.UnknownException;
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
+
 
 
 
@@ -16,7 +18,15 @@ import org.omg.CORBA.portable.UnknownException;
  */
 public class ConectaDB_Mongo {
     
-    public static void main (args[])throws UnknownException, MongoException{
-        MongoClient 
+    public static void main (String[] args){
+        try{
+            MongoClient mongoClient = new MongoClient("localhost", 27017);
+            DB db = mongoClient.getDB("trabPGBD");
+            System.out.println("Conectado com sucesso");
+            
+        }catch(Exception e){
+            System.out.println("e");
+        }
+        System.out.println("Server pronto!");
     } 
 }
