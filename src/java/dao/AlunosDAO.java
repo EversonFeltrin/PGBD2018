@@ -5,10 +5,19 @@
  */
 package dao;
 
+import model.Alunos;
+
 /**
  *
  * @author cassi
  */
 interface AlunosDAO {
-   
+
+   public Alunos create(Alunos a);
+
+   public void update(long id, Alunos a);
+
+   public void delete(long id);
+
+   public Alunos findByName(String name);
 }
