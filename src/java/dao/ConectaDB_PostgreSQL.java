@@ -36,11 +36,10 @@ public class ConectaDB_PostgreSQL {
          } else {
             System.out.println("não conectou PostgreSQL");
          }
-      } catch (ClassNotFoundException ex) { //Driver não encontrado
-         ex.printStackTrace();
-      } catch (SQLException e) {  //Não conecta BD
-         e.printStackTrace();
-      }
+      } catch (ClassNotFoundException | SQLException ex) {
+         //Driver não encontrado
+               }
+      //Não conecta BD
       return conn;
    }
 }
