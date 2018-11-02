@@ -13,25 +13,24 @@ CREATE DATABASE "TrabPGBD"
 
 COMMENT ON DATABASE "TrabPGBD"
     IS 'Database criado para o trabalho da disciplina de PGBD.';
-	
-CREATE TABLE Alunos(
-idAluno SERIAL PRIMARY KEY,
-nome VARCHAR(50) NOT NULL,
-matricula CHAR(10) UNIQUE NOT NULL
-);
 
-CREATE TYPE PERIODO AS ENUM('matutino', 'vespertino', 'noturno');
+CREATE TABLE Alunos(
+	idAluno SERIAL PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL,
+	matricula CHAR(10) UNIQUE NOT NULL
+);
 
 CREATE TYPE ATIV AS ENUM('palestrante','ouvinte','expositor','organizador');
 
 CREATE TABLE Atividade(
-idAtividade SERIAL PRIMARY KEY,
-classificacao TEXT NOT NULL,
-localAtividade VARCHAR(80) NOT NULL,
-periodo PERIODO NOT NULL,
-cargaHoraria INT NOT NULL,
-atividadeDesenvolvida ATIV,
-dataSubmissao DATE NOT NULL,
-idAluno INT NOT NULL,
-FOREIGN KEY (idAluno) REFERENCES Alunos(idAluno)
+	idAtividade SERIAL PRIMARY KEY,
+	classificacao TEXT NOT NULL,
+	localAtividade VARCHAR(80) NOT NULL,
+	dataIni DATE NOT NULL,
+	dataFim DATE NOT NULL,
+	cargaHoraria INT NOT NULL,
+	atividadeDesenvolvida ATIV,
+	dataSubmissao DATE NOT NULL,
+	idAluno INT NOT NULL,
+	FOREIGN KEY (idAluno) REFERENCES Alunos(idAluno)
 );
