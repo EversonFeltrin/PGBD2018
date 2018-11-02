@@ -9,18 +9,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConectaDB {
-    private static final String banco = "mongo";
+    private static final String banco = "mySql";
     
     public static void main (String args[]){
-        //vai testar conforme a definição do nome do banco qual conexão levantar
-        new ConectaDB().getConexaoMySql();
+        
         if (banco.equals("mongo")){
             
             //new ConectaDB().read(2);
             System.out.println("Conectado ao MongoDB");
         }
         else {
-            
+            //vai testar conforme a definição do nome do banco qual conexão levantar
+            new ConectaDB().getConexaoMySql();
             System.out.println("Conectado ao MySqlDB");
         }
         
@@ -41,9 +41,9 @@ public class ConectaDB {
             Class.forName(driverName);
             conn = DriverManager.getConnection(url, username, password);
             if (conn != null){
-                System.out.println("conectou");
+                System.out.println("conectou MySql");
             }else {
-                System.out.println("não conectou");
+                System.out.println("não conectou MySql");
             }
         } catch(ClassNotFoundException ex){ //Driver não encontrado
             ex.printStackTrace();
