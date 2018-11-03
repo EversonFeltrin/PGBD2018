@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package pgbd.model;
 
 import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
 import java.util.ArrayList;

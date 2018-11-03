@@ -3,21 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
-
-import model.Alunos;
+package pgbd.dao;
 
 /**
  *
  * @author cassi
  */
-interface AlunosDAO {
-
-   public Alunos create(Alunos a);
-
-   public void update(long id, Alunos a);
-
-   public void delete(long id);
-
-   public Alunos findByName(String name);
+interface AtividadesDAO {
+   
 }

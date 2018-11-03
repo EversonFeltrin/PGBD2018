@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package pgbd.dao;
+
+import com.mongodb.DBCollection;
+import pgbd.model.Alunos;
 
 /**
  *
- * @author cassi
+ * @author efelt
  */
-interface AtividadesDAO {
-   
+public class AlunosDAOMongoDB {
+    
 }
