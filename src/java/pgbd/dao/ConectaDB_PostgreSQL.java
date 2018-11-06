@@ -15,17 +15,17 @@ import java.sql.SQLException;
  */
 public class ConectaDB_PostgreSQL {
 
-   String serverName = "localhost:5432"; //caminho do servidor do BD
-   String mydatabase = "TrabPGBD";     //nome do BD
-   String url = "jdbc:postgresql://" + serverName + "/" + mydatabase;
-   String username = "postgres";        //nome de usuário de seu BD
-   String password = "123456";        //senha de acesso ao BD
+   private static final String serverName = "localhost:5432"; //caminho do servidor do BD
+   private static final String mydatabase = "TrabPGBD";     //nome do BD
+   private static final String url = "jdbc:postgresql://" + serverName + "/" + mydatabase;
+   private static final String username = "postgres";        //nome de usuário de seu BD
+   private static final String password = "123456";        //senha de acesso ao BD
 
    public static void main(String args[]) {
       new ConectaDB_PostgreSQL().getConexao();
    }
 
-   public Connection getConexao() {
+   public static Connection getConexao() {
       Connection conn = null;
       try {
          String driverName = "org.postgresql.Driver";
