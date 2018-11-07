@@ -14,41 +14,41 @@ import java.util.ArrayList;
  */
 public class Alunos {
    private int idAluno;
-   private string nome;
-   private string matricula;
-
-   public int getIdAluno() {
-      return idAluno;
-   }
-
-   public void setIdAluno(int idAluno) {
-      this.idAluno = idAluno;
-   }
-
-   public string getNome() {
-      return nome;
-   }
-
-   public void setNome(string nome) {
-      this.nome = nome;
-   }
-
-   public string getMatricula() {
-      return matricula;
-   }
-
-   public void setMatricula(string matricula) {
-      this.matricula = matricula;
-   }
-   
+   private String nome;
+   private String matricula;
    private ArrayList<Atividades> atividades;
-   
-   public ArrayList<Atividades> getAtividades() {
-      return atividades;
-   }
 
-   public void setAtividades(ArrayList<Atividades> atividades) {
-      this.atividades = atividades;
-   }
+    public int getIdAluno() {
+        return idAluno;
+    }
+
+    public void setIdAluno(int idAluno) {
+        this.idAluno = idAluno;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public ArrayList<Atividades> getAtividades() {
+        return atividades;
+    }
+
+    public void setAtividades(ArrayList<Atividades> atividades) {
+        this.atividades = atividades;
+    }
+   
    
 }

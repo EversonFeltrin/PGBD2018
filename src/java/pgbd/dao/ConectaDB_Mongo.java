@@ -25,78 +25,30 @@ import pgbd.model.Alunos;
  * @author efelt
  */
 public class ConectaDB_Mongo {
-    
+    private static final String mongoDatabase = "trabPGBD";
+    //cuidar nome da coleção para não gerar uma nova
+    private static final String  mongoCollection = "alunos";
     
     public static void main (String[] args){
+        new ConectaDB_Mongo().getConexao();
+    }
+    
+    public DBCollection getConexao(){
+        MongoClient mongoClient = null;
+        DB db = null;
+        DBCollection collection = null;
+        //DBCursor cursor = null;
         try{
-            MongoClient mongoClient = new MongoClient();
-            DB db = mongoClient.getDB("trabPGBD");
-            System.out.println("Conectado com sucesso");
-           
-            DBCollection collection = db.getCollection("alunos");
-            
-            DBCursor cursor = collection.find();
-            
-            BasicDBObject comparaQuery = new BasicDBObject("nome", "Camilla Bordin Portilho");
-                
-            //UPDATE ou INSERT
-            //cria o array de atividades para linkar ao usuario
-            List<Object> atividadesDBList = new BasicDBList();
-            DBObject atividadeDBObject = new BasicDBObject();
-            
-            atividadeDBObject.put("classificacao","teste a mais");
-            atividadeDBObject.put("localAtividade", "São Paulo");
-            atividadeDBObject.put("dataIni", "20/10/2018");
-            atividadeDBObject.put("dataFim", "22/10/2018");
-            atividadeDBObject.put("cargaHoraria", "50");
-            atividadeDBObject.put("atividadeDesenvolvida", "Ouvinte");
-            atividadeDBObject.put("dataSubmissao", "02/11/2018");
-            atividadesDBList.add(atividadeDBObject);
- 
-            //insere alunos no banco de dados
-            BasicDBObject aluno = new BasicDBObject();
-            aluno.put("nome","Camilla Bordin Portilho");
-            aluno.put("matricula","2013207542");
-            aluno.put("atividade",atividadesDBList);
-            
-            
-            collection.update(comparaQuery, aluno);
-            
-            int i = 1;
-            
-            while (cursor.hasNext()){
-                System.out.println("Documento Inserido: " + i);
-                System.out.println(cursor.next());
-                i++;
-            }
-            
-            
-            //DELETE
-            BasicDBObject deleteQuery = new BasicDBObject();
-            deleteQuery.put("nome","Evandro");
-            
-            //DBCursor cursor;
-            cursor = collection.find(deleteQuery);
-            
-            while(cursor.hasNext()){
-                DBObject registro = cursor.next();
-                collection.remove(registro);
-            }
-             
-            //int i = 1;
-            /*
-            while (cursor.hasNext()){
-                System.out.println("Documento Inserido: " + i);
-                System.out.println(cursor.next());
-                i++;
-            }
-            */
+            mongoClient = new MongoClient();
+            db = mongoClient.getDB(mongoDatabase);
+            collection = db.getCollection(mongoCollection);
+            //cursor = collection.find();
         }catch(Exception e){
             System.out.println("e");
         }
         System.out.println("Server pronto!");
-    
+        return collection;
     }
-
-    
+            
+            
 }
