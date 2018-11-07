@@ -13,11 +13,11 @@ import pgbd.model.Alunos;
  */
 interface AlunosDAO {
 
-   public boolean create();
+   public void create(Alunos a);
 
-   public void update(long id, Alunos a);
+   public void update_aluno(int id, Alunos a);
 
-   public int delete(long id);
+   public int delete_aluno(int id);
 
    public Alunos findByName(String name);
 }

@@ -21,12 +21,35 @@ public class AlunosDAOPostgreSQL {
       conn = ConectaDB_PostgreSQL.getConexao();
    }
    
-   public void insert_aluno(Alunos a){
+   public void create(Alunos a){
+      String sql = "INSERT INTO alunos (idAluno, nome, matricula) VALUES (?, ?, ?)";
       
+      try {
+         conn = ConectaDB_PostgreSQL.getConexao();
+         PreparedStatement stmt = conn.prepareStatement(sql);
+         stmt.setInt(1, a.getIdAluno());
+         stmt.setString(2, a.getNome());
+         stmt.setString(3, a.getMatricula());
+         stmt.execute();
+         System.out.println("\nAluno adicionado com sucesso");
+      } catch (SQLException e) {
+         System.out.println("Ocorreu um erro: " + e);
+      }
    }
    
-   public void update_aluno(int id, Alunos a){
+   public void update_aluno(int idAluno, Alunos a){
+      String sql = "UPDATE alunos SET nome = ?, matricula = ? WHERE idAluno = ?";
       
+      try {
+         conn = ConectaDB_PostgreSQL.getConexao();
+         PreparedStatement stmt = conn.prepareStatement(sql);
+         stmt.setString(1,a.getNome());
+         stmt.setString(2,a.getMatricula());
+         stmt.setInt(3,idAluno);
+         System.out.println("\nAluno editado com sucesso");
+      } catch (SQLException e) {
+         System.out.println("Ocorreu um erro: " + e);
+      }
    }
    
    public void delete_aluno(int id){
