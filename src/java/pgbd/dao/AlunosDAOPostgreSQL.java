@@ -7,6 +7,7 @@ package pgbd.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import pgbd.model.Alunos;
 
@@ -35,6 +36,28 @@ public class AlunosDAOPostgreSQL {
       } catch (SQLException e) {
          System.out.println("Ocorreu um erro: " + e);
       }
+   }
+   
+   public Alunos read_aluno(int idAluno){
+      Alunos a = new Alunos();
+      String sql = "SELECT * FROM alunos WHERE idAluno = ?";
+      
+      try {
+         conn = ConectaDB_PostgreSQL.getConexao();
+         PreparedStatement stmt = conn.prepareStatement(sql);
+         stmt.setInt(1, idAluno);
+         ResultSet rs = stmt.executeQuery();
+         
+         while(rs.next()) {
+            a.setIdAluno(rs.getInt("idAluno"));
+            a.setNome(rs.getString("nome"));
+            a.setMatricula(rs.getString("matricula"));
+         }
+         return a;
+      } catch (SQLException e) {
+      System.out.println("Ocorreu um erro: " + e);
+      return null;
+         }
    }
    
    public void update_aluno(int idAluno, Alunos a){

@@ -16,8 +16,8 @@ interface AlunosDAO {
    public void create(Alunos a);
 
    public void update_aluno(int id, Alunos a);
+   
+   public Alunos read_aluno(int idAluno);
 
    public int delete_aluno(int id);
-
-   public Alunos findByName(String name);
 }
