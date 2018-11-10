@@ -19,5 +19,5 @@ interface AlunosDAO {
    
    public Alunos read_aluno(int idAluno);
 
-   public int delete_aluno(int id);
+   public void delete_aluno(int id);
 }

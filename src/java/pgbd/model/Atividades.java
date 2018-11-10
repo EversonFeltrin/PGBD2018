@@ -7,6 +7,8 @@ package pgbd.model;
 
 import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
 import java.util.Date;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -14,12 +16,12 @@ import java.util.Date;
  */
 public class Atividades {
    private int idAtividade;
-   private string classificacao;
-   private string localAtividade;
+   private String classificacao;
+   private String localAtividade;
    private Date dataIni;
    private Date dataFim;
    private int cargaHoraria;
-   private string atividadeDesenvolvida;
+   private String atividadeDesenvolvida;
    private Date dataSubmissao; 
    private int idAluno;
 
@@ -31,19 +33,19 @@ public class Atividades {
       this.idAtividade = idAtividade;
    }
 
-   public string getClassificacao() {
+   public String getClassificacao() {
       return classificacao;
    }
 
-   public void setClassificacao(string classificacao) {
+   public void setClassificacao(String classificacao) {
       this.classificacao = classificacao;
    }
 
-   public string getLocalAtividade() {
+   public String getLocalAtividade() {
       return localAtividade;
    }
 
-   public void setLocalAtividade(string localAtividade) {
+   public void setLocalAtividade(String localAtividade) {
       this.localAtividade = localAtividade;
    }
 
@@ -71,11 +73,11 @@ public class Atividades {
       this.cargaHoraria = cargaHoraria;
    }
 
-   public string getAtividadeDesenvolvida() {
+   public String getAtividadeDesenvolvida() {
       return atividadeDesenvolvida;
    }
 
-   public void setAtividadeDesenvolvida(string atividadeDesenvolvida) {
+   public void setAtividadeDesenvolvida(String atividadeDesenvolvida) {
       this.atividadeDesenvolvida = atividadeDesenvolvida;
    }
 
