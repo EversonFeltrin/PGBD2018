@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import pgbd.model.Alunos;
 import pgbd.model.Atividades;
 
 /**
@@ -33,7 +34,9 @@ public class AtividadesDAOPostgreSQL {
 
    public Atividades read_atividade(int idAtividade) {
       Atividades a = new Atividades();
-      String sql = "SELECT * FROM atividades WHERE idAtividade = ?";
+      Alunos al = new Alunos();
+      
+      String sql = "SELECT * FROM atividades a join alunos al on a.idAluno = al.idAluno WHERE idAtividade = ?";
 
       try {
          conn = ConectaDB_PostgreSQL.getConexao();
@@ -42,15 +45,16 @@ public class AtividadesDAOPostgreSQL {
          ResultSet rs = stmt.executeQuery();
 
          while (rs.next()) {
-            a.setIdAtividade(rs.getInt("idAtividade"));
-            a.setClassificacao(rs.getString("classificacao"));
-            a.setLocalAtividade(rs.getString("localAtividade"));
-            a.setDataIni(rs.getDate("dataIni"));
-            a.setDataFim(rs.getDate("dataFim"));
-            a.setCargaHoraria(rs.getInt("cargaHoraria"));
-            a.setAtividadeDesenvolvida(rs.getString("atividadeDesenvolvida"));
-            a.setDataSubmissao(rs.getDate("dataSubmissao"));
-            a.setIdAluno(rs.getInt("idAluno"));
+            a.setIdAtividade(rs.getInt("a.idAtividade"));
+            a.setClassificacao(rs.getString("a.classificacao"));
+            a.setLocalAtividade(rs.getString("a.localAtividade"));
+            a.setDataIni(rs.getDate("a.dataIni"));
+            a.setDataFim(rs.getDate("a.dataFim"));
+            a.setCargaHoraria(rs.getInt("a.cargaHoraria"));
+            a.setAtividadeDesenvolvida(rs.getString("a.atividadeDesenvolvida"));
+            a.setDataSubmissao(rs.getDate("a.dataSubmissao"));
+            al.setIdAluno(rs.getInt("al.idAluno"));
+            a.setAluno(al);
          }
          return a;
       } catch (SQLException e) {

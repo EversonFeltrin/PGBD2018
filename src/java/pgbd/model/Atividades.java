@@ -8,6 +8,7 @@ package pgbd.model;
 import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
 import java.util.Date;
 import java.util.ArrayList;
+import pgbd.model.Alunos;
 
 
 /**
@@ -23,7 +24,15 @@ public class Atividades {
    private int cargaHoraria;
    private String atividadeDesenvolvida;
    private Date dataSubmissao; 
-   private int idAluno;
+   private Alunos aluno;
+
+   public Alunos getAluno() {
+      return aluno;
+   }
+
+   public void setAluno(Alunos aluno) {
+      this.aluno = aluno;
+   }
 
    public int getIdAtividade() {
       return idAtividade;
@@ -89,13 +98,6 @@ public class Atividades {
       this.dataSubmissao = dataSubmissao;
    }
 
-   public int getIdAluno() {
-      return idAluno;
-   }
-
-   public void setIdAluno(int idAluno) {
-      this.idAluno = idAluno;
-   }
    
 }
 
