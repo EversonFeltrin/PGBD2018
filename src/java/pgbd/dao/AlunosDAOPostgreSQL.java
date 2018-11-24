@@ -61,7 +61,7 @@ public class AlunosDAOPostgreSQL {
       }
    }
 
-   public void update_aluno(int idAluno, Alunos a) {
+   public boolean update_aluno(int idAluno, Alunos a) {
       String sql = "UPDATE alunos SET nome = ?, matricula = ? WHERE idAluno = ?";
 
       try {
@@ -71,15 +71,19 @@ public class AlunosDAOPostgreSQL {
          stmt.setString(2, a.getMatricula());
          stmt.setInt(3, idAluno);
          System.out.println("\nAluno editado com sucesso");
+         if(stmt.executeUpdate() >0){
+            return true;
+         }
       } catch (SQLException e) {
          System.out.println("Ocorreu um erro: " + e);
       }
+      return false;
    }
 
    public void delete_aluno(int id) {
       // Para deletar um aluno é necessário deletar todas as atividades do mesmo
       String sql0 = "DELETE FROM atividade WHERE idAluno = ?";
-      String sql1 = "DELETE FROM alunos WHERE id = ?";
+      String sql1 = "DELETE FROM alunos WHERE idaluno = ?";
 
       try {
          conn = ConectaDB_PostgreSQL.getConexao();
@@ -89,12 +93,11 @@ public class AlunosDAOPostgreSQL {
          stmt1.executeUpdate();
 
          PreparedStatement stmt = conn.prepareStatement(sql1);
-         stmt1.setInt(1, id);
-         stmt1.executeUpdate();
+         stmt.setInt(1, id);
+         stmt.executeUpdate();
          System.out.println("Aluno Deletado do Banco");
       } catch (SQLException e) {
          System.out.println("Ocorreu um erro: " + e);
       }
    }
-
 }

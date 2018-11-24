@@ -15,7 +15,7 @@ interface AlunosDAO {
 
    public void create(Alunos a);
 
-   public void update_aluno(int id, Alunos a);
+   public boolean update_aluno(int id, Alunos a);
    
    public Alunos read_aluno(int idAluno);
 
