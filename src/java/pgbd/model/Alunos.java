@@ -17,7 +17,15 @@ public class Alunos {
    private String nome;
    private String matricula;
    private ArrayList<Atividades> atividades;
+   private String idAlunoM;
 
+    public String getIdAlunoM() {
+        return idAlunoM;
+    }
+
+    public void setIdAlunoM(String idAlunoM) {
+        this.idAlunoM = idAlunoM;
+    }
     public int getIdAluno() {
         return idAluno;
     }
