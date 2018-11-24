@@ -19,84 +19,84 @@ public class Atividades {
    private int idAtividade;
    private String classificacao;
    private String localAtividade;
-   private Date dataIni;
-   private Date dataFim;
+   private String dataIni;
+   private String dataFim;
    private int cargaHoraria;
    private String atividadeDesenvolvida;
-   private Date dataSubmissao; 
+   private String dataSubmissao; 
    private Alunos aluno;
 
-   public Alunos getAluno() {
-      return aluno;
-   }
+    public int getIdAtividade() {
+        return idAtividade;
+    }
 
-   public void setAluno(Alunos aluno) {
-      this.aluno = aluno;
-   }
+    public void setIdAtividade(int idAtividade) {
+        this.idAtividade = idAtividade;
+    }
 
-   public int getIdAtividade() {
-      return idAtividade;
-   }
+    public String getClassificacao() {
+        return classificacao;
+    }
 
-   public void setIdAtividade(int idAtividade) {
-      this.idAtividade = idAtividade;
-   }
+    public void setClassificacao(String classificacao) {
+        this.classificacao = classificacao;
+    }
 
-   public String getClassificacao() {
-      return classificacao;
-   }
+    public String getLocalAtividade() {
+        return localAtividade;
+    }
 
-   public void setClassificacao(String classificacao) {
-      this.classificacao = classificacao;
-   }
+    public void setLocalAtividade(String localAtividade) {
+        this.localAtividade = localAtividade;
+    }
 
-   public String getLocalAtividade() {
-      return localAtividade;
-   }
+    public String getDataIni() {
+        return dataIni;
+    }
 
-   public void setLocalAtividade(String localAtividade) {
-      this.localAtividade = localAtividade;
-   }
+    public void setDataIni(String dataIni) {
+        this.dataIni = dataIni;
+    }
 
-   public Date getDataIni() {
-      return dataIni;
-   }
+    public String getDataFim() {
+        return dataFim;
+    }
 
-   public void setDataIni(Date dataIni) {
-      this.dataIni = dataIni;
-   }
+    public void setDataFim(String dataFim) {
+        this.dataFim = dataFim;
+    }
 
-   public Date getDataFim() {
-      return dataFim;
-   }
+    public int getCargaHoraria() {
+        return cargaHoraria;
+    }
 
-   public void setDataFim(Date dataFim) {
-      this.dataFim = dataFim;
-   }
+    public void setCargaHoraria(int cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
 
-   public int getCargaHoraria() {
-      return cargaHoraria;
-   }
+    public String getAtividadeDesenvolvida() {
+        return atividadeDesenvolvida;
+    }
 
-   public void setCargaHoraria(int cargaHoraria) {
-      this.cargaHoraria = cargaHoraria;
-   }
+    public void setAtividadeDesenvolvida(String atividadeDesenvolvida) {
+        this.atividadeDesenvolvida = atividadeDesenvolvida;
+    }
 
-   public String getAtividadeDesenvolvida() {
-      return atividadeDesenvolvida;
-   }
+    public String getDataSubmissao() {
+        return dataSubmissao;
+    }
 
-   public void setAtividadeDesenvolvida(String atividadeDesenvolvida) {
-      this.atividadeDesenvolvida = atividadeDesenvolvida;
-   }
+    public void setDataSubmissao(String dataSubmissao) {
+        this.dataSubmissao = dataSubmissao;
+    }
 
-   public Date getDataSubmissao() {
-      return dataSubmissao;
-   }
+    public Alunos getAluno() {
+        return aluno;
+    }
 
-   public void setDataSubmissao(Date dataSubmissao) {
-      this.dataSubmissao = dataSubmissao;
-   }
+    public void setAluno(Alunos aluno) {
+        this.aluno = aluno;
+    }
 
    
 }
