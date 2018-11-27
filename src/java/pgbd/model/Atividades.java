@@ -22,7 +22,16 @@ public class Atividades {
    private String dataFim;
    private int cargaHoraria;
    private String atividadeDesenvolvida;
-   private String dataSubmissao; 
+   private String dataSubmissao;
+   private int idAluno;
+
+    public int getIdAluno() {
+        return idAluno;
+    }
+
+    public void setIdAluno(int idAluno) {
+        this.idAluno = idAluno;
+    }
    private Alunos aluno;
 
     public int getIdAtividade() {

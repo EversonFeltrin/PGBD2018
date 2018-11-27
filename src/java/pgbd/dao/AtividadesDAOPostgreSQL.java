@@ -27,27 +27,34 @@ public class AtividadesDAOPostgreSQL {
 //      conn = ConectaDB_PostgreSQL().getConexao();
 //   }
 //
-//   public void create(Atividades a) {
-//      String sql = "INSERT INTO atividade (idAtividade, classificacao, localAtividade, dataIni, dataFim, cargaHoraria, atividadeDesenvolvida, dataSubmissao, idAluno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-// 
-//      try {
-//         conn = ConectaDB_PostgreSQL.getConexao();
-//         PreparedStatement stmt = conn.prepareStatement(sql);
-//         stmt.setInt(1, a.getIdAtividade());
-//         stmt.setString(2, a.getClassificacao());
-//         stmt.setString(3, a.getLocalAtividade());
-//         stmt.setString(4, a.getDataIni());
-//         stmt.setString(5, a.getDataFim());
-//         stmt.setInt(6, a.getCargaHoraria());
-//         stmt.setString(7, a.getAtividadeDesenvolvida());
-//         stmt.setString(8, a.getDataSubmissao());
-//         stmt.setInt(9, a.getAluno().getIdAluno());
-//         stmt.execute();
-//         System.out.println("\nAtividade adicionada com sucesso");
-//      } catch (SQLException e) {
-//         System.out.println("Ocorreu um erro: " + e);
-//      }
-//   }
+   public int create(Atividades a) {
+      a.setIdAtividade(geraIdAtividade());
+      try (Connection conn = new ConectaDB_PostgreSQL().getConexao()){
+         String sql = "INSERT INTO atividade (idAtividade, classificacao, "
+                 + "localAtividade, dataIni, dataFim, cargaHoraria, "
+                 + "atividadeDesenvolvida, dataSubmissao, idAluno) "
+                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+ 
+         PreparedStatement pre = conn.prepareStatement(sql);
+         pre.setInt(1, a.getIdAtividade());
+         pre.setString(2, a.getClassificacao());
+         pre.setString(3, a.getLocalAtividade());
+         pre.setString(4, a.getDataIni());
+         pre.setString(5, a.getDataFim());
+         pre.setInt(6, a.getCargaHoraria());
+         pre.setString(7, a.getAtividadeDesenvolvida());
+         pre.setString(8, a.getDataSubmissao());
+         pre.setInt(9, a.getIdAluno());
+         
+         if (pre.executeUpdate() > 0){
+             System.out.println("Atividade adicionada com sucesso...\n");
+             return a.getIdAtividade();
+         }
+      } catch (SQLException e) {
+         System.out.println("Ocorreu um erro: " + e);
+      }
+      return 0;
+   }
 //
 //   public boolean update_atividade(int idAtividade, Atividades a) {
 //      String sql = "UPDATE atividade SET classificacao = ?, localAtividade = ?, dataIni = ?, dataFim = ?, cargaHoraria = ?, atividadeDesenvolvida = ?, dataSubmissao = ?, idAluno = ? WHERE idAtividade = ?";
@@ -120,4 +127,21 @@ public class AtividadesDAOPostgreSQL {
 //         System.out.println("Ocorreu um erro: " + e);
 //      }
 //   }
+   
+   public int geraIdAtividade(){
+        int val = -1;
+        try(Connection conn = new ConectaDB_PostgreSQL().getConexao()){
+            String sql = "select max(idAluno) from atividade;";
+            PreparedStatement pre = conn.prepareStatement(sql);
+            ResultSet rs = pre.executeQuery();
+            rs.next();
+            long countLong = rs.getLong(1);
+            //retorna o proximo ID disponível
+            val = (int)countLong + 1;
+            return val;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return val;
+    }
 }

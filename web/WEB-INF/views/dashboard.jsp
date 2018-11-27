@@ -21,9 +21,9 @@
                     <h2><strong>Inserir ACG:</strong></h2>
                     <form action = "cadastrarAcg" method = "POST">
                         <label for = "matricula">Matricula:</label>
-                        <input type = "text" readonly name="matricula" value=${aluno.matricula}>
+                        <input type = "text" name="matricula" value='${aluno.matricula}' readonly>
                         <label for = "nome">Nome Completo:</label>
-                        <input type = "text" readonly name="nome" value=${aluno.nome}>
+                        <input type = "text" name="nome" value='${aluno.nome}' readonly>
                         <label for = "classificacao">Classificação da Atividade:</label>
                         <input type = "text" name="classificacao" required>
                         <label for = "local">Local da Atividade:</label>

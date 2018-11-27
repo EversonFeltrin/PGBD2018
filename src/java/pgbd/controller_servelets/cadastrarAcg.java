@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pgbd.dao.AlunosDAOPostgreSQL;
+import pgbd.dao.AtividadesDAOPostgreSQL;
 import pgbd.model.Alunos;
 import pgbd.model.Atividades;
 
@@ -27,10 +28,10 @@ public class cadastrarAcg extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        String nome = req.getParameter("nome");
+        String matricula = req.getParameter("matricula");
         //instancia o novo aluno
-        Alunos aluno = new Alunos();
-        aluno.setNome(req.getParameter("nome"));
-        aluno.setMatricula(req.getParameter("matricula"));
+        Alunos aluno = new AlunosDAOPostgreSQL().read_aluno(nome, matricula);
         System.out.println(aluno.getNome()+ " - "+aluno.getMatricula()+"\n");
         
         
@@ -44,6 +45,15 @@ public class cadastrarAcg extends HttpServlet {
         at.setCargaHoraria(Integer.parseInt(req.getParameter("horas")));
         at.setAtividadeDesenvolvida(req.getParameter("atividade"));
         at.setDataSubmissao(req.getParameter("dataSub"));
+        at.setIdAluno(aluno.getIdAluno());
+        
+        int createAtividade = new AtividadesDAOPostgreSQL().create(at);
+        if(createAtividade > 0 ){
+            System.out.println("Atividade cadastrada com sucesso...\n");
+        }
+        else{
+            System.out.println("Erro ao cadastrar atividade...\n");
+        }
 //        
 //        
 //        ArrayList<Atividades> arrayAtiv = new ArrayList<Atividades>();  
