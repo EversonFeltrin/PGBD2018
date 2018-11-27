@@ -31,17 +31,19 @@ public class cadastrarAcg extends HttpServlet {
         Alunos aluno = new Alunos();
         aluno.setNome(req.getParameter("nome"));
         aluno.setMatricula(req.getParameter("matricula"));
-
+        System.out.println(aluno.getNome()+ " - "+aluno.getMatricula()+"\n");
         
-//        //instancia a atividade que está sendo cadastrada
-//        Atividades at = new Atividades();
-//        at.setClassificacao(req.getParameter("classificacao"));
-//        at.setLocalAtividade(req.getParameter("local"));
-//        at.setDataIni(req.getParameter("periodoIni"));
-//        at.setDataFim(req.getParameter("periodoFim"));
-//        at.setCargaHoraria(Integer.parseInt(req.getParameter("horas")));
-//        at.setAtividadeDesenvolvida(req.getParameter("atividade"));
-//        at.setDataSubmissao(req.getParameter("dataSub"));
+        
+        
+        //instancia a atividade que está sendo cadastrada
+        Atividades at = new Atividades();
+        at.setClassificacao(req.getParameter("classificacao"));
+        at.setLocalAtividade(req.getParameter("local"));
+        at.setDataIni(req.getParameter("periodoIni"));
+        at.setDataFim(req.getParameter("periodoFim"));
+        at.setCargaHoraria(Integer.parseInt(req.getParameter("horas")));
+        at.setAtividadeDesenvolvida(req.getParameter("atividade"));
+        at.setDataSubmissao(req.getParameter("dataSub"));
 //        
 //        
 //        ArrayList<Atividades> arrayAtiv = new ArrayList<Atividades>();  

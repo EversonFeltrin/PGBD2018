@@ -44,15 +44,29 @@ public class AlunosDAOPostgreSQL {
         }
         return 0;
    }
-//   public Alunos read_aluno(String nome, String matricula){
-//       Alunos a = new Alunos();
-//       
-//       a.setIdAluno(1);
-//       a.setNome(nome);
-//       a.setMatricula(matricula);
-//       a.setIdAlunoM("sabe Deus");
-//       return a;
-//   } 
+   public Alunos read_aluno(String nome, String matricula){
+      try(Connection conn = new ConectaDB_PostgreSQL().getConexao()){
+          String sql = "SELECT * FROM aluno WHERE nome = ? AND matricula = ?";
+        
+          PreparedStatement pre = conn.prepareStatement(sql);
+          pre.setString( 1, nome);
+          pre.setString( 2, matricula);
+          
+          ResultSet rs = pre.executeQuery();
+          
+          Alunos a = new Alunos();
+          while(rs.next()){
+              a.setIdAluno(rs.getInt("idAluno"));
+              a.setNome(rs.getString("nome"));
+              a.setMatricula(rs.getString("matricula"));
+          }
+          return a;
+      }
+      catch(SQLException e){
+          e.printStackTrace();
+      }
+       return null;
+   } 
    public Alunos read_aluno(int idAluno) {
       Alunos a = new Alunos();
       String sql = "SELECT * FROM aluno WHERE idAluno = ?";
