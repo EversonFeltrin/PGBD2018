@@ -5,7 +5,6 @@
  */
 package pgbd.model;
 
-import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
 import java.util.ArrayList;
 
 /**

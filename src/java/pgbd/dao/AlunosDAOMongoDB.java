@@ -42,9 +42,11 @@ public class AlunosDAOMongoDB {
         Alunos a = new Alunos();
         a.setNome((String)consulta.get("nome"));
         a.setMatricula((String)consulta.get("matricula"));
+        //a.setIdAlunoM((String)consulta.get();
+        
         // a.setIdAluno((String)consulta.get("_id"));
-        //System.out.println("Identificador:");
-        //System.out.println((String)consulta.get("_id"));
+        System.out.println("Identificador:");
+        System.out.println(a.getMatricula());
         return a;
     }
     public void delete_aluno(Alunos aluno){

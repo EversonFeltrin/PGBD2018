@@ -11,15 +11,15 @@ import pgbd.model.Alunos;
  *
  * @author cassi
  */
-interface AlunosDAO {
+public abstract class AlunosDAO {
 
-   public void create(Alunos a);
+    public abstract void create(Alunos a);
 
-   public boolean update_aluno(int id, Alunos a);
+   public abstract boolean update_aluno(int id, Alunos a);
    
-   public Alunos read_aluno(int idAluno);
+   public abstract Alunos read_aluno(int idAluno);
    
-   public Alunos read_aluno(String idAluno);
+   public abstract Alunos read_aluno(String idAluno);
     
-   public void delete_aluno(int id);
+   public abstract void delete_aluno(int id);
 }
