@@ -26,8 +26,14 @@ public class gerenciarAcgServelet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         String acao = req.getParameter("acao");
         int idAluno = Integer.parseInt(req.getParameter("idAluno"));
+        RequestDispatcher disp;
+        req.setAttribute("aluno", new AlunosDAOPostgreSQL().read_aluno(idAluno));
+          
         if (acao.equals("editar")){
             System.out.println("Vai chamar para editar!");
+            req.setAttribute("atividade", new AtividadesDAOPostgreSQL().read_atividade(idAluno));
+            disp = req.getRequestDispatcher("WEB-INF/views/editar.jsp");
+            disp.forward(req, resp);
         }
         if(acao.equals("deletar")){
             System.out.println("Vai deletar!");
@@ -38,17 +44,9 @@ public class gerenciarAcgServelet extends HttpServlet {
             else {
                 System.out.println("Erro ao apagar atividade...");
             }
-        
-        } 
-        
-        RequestDispatcher disp;
-        req.setAttribute("aluno", new AlunosDAOPostgreSQL().read_aluno(idAluno));
-        req.setAttribute("atividade", new AlunosDAOPostgreSQL().getAtividades(idAluno));
-        disp = req.getRequestDispatcher("WEB-INF/views/dashboard.jsp");
-        disp.forward(req, resp);
-            
-            
-        
+            req.setAttribute("atividade", new AlunosDAOPostgreSQL().getAtividades(idAluno));
+            disp = req.getRequestDispatcher("WEB-INF/views/dashboard.jsp");
+            disp.forward(req, resp);
+        }        
     }
-
 }
