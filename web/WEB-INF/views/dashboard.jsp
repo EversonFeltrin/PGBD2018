@@ -48,13 +48,13 @@
                 <c:forEach var="atividade" items="${atividade}">
                   
                     <li>                    
-                        <p>Atividade: ${atividade.idAtividade} Classificação: ${atividade.classificacao} Local: ${atividade.localAtividade} </p>
+                        <p>Classificação: ${atividade.classificacao} Local: ${atividade.localAtividade} </p>
                         <p>Data de Início: ${atividade.dataIni} Data de Término:  ${atividade.dataFim} Carga Horária: ${atividade.cargaHoraria} </p>
                         <p>Atividade Desenvolvida: ${atividade.atividadeDesenvolvida} </p> 
                         <p>
                             Data de Submissão: ${atividade.dataSubmissao}
-                            <a href="">Editar</a> 
-                            <a href="">Deletar</a>
+                            <a href="http://localhost:8080/PGBD2018/gerenciarAcg?idAluno=${aluno.idAluno}&idAtividade=${atividade.idAtividade}&acao=editar">Editar</a> 
+                            <a href="http://localhost:8080/PGBD2018/gerenciarAcg?idAluno=${aluno.idAluno}&idAtividade=${atividade.idAtividade}&acao=deletar">Deletar</a>
                             
                         </p>
                         <!--<a href="http://localhost:8080/trats/associado?matricula=${assoc.matAssociado}&acao=editar">Editar</a> - 

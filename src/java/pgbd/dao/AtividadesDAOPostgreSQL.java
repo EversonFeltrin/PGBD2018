@@ -113,20 +113,20 @@ public class AtividadesDAOPostgreSQL {
 //
 //   }
 //
-//   public void delete_atividade(int idAtividade) {
-//      String sql = "DELETE FROM atividade WHERE idAtividade = ?";
-//
-//      try {
-//         conn = ConectaDB_PostgreSQL.getConexao();
-//
-//         PreparedStatement stmt1 = conn.prepareStatement(sql);
-//         stmt1.setInt(1, idAtividade);
-//         stmt1.executeUpdate();
-//         System.out.println("Atividade Deletada do Banco");
-//      } catch (SQLException e) {
-//         System.out.println("Ocorreu um erro: " + e);
-//      }
-//   }
+   public boolean delete_atividade(int idAtividade) {
+      try(Connection conn = new ConectaDB_PostgreSQL().getConexao()) {
+         String sql = "DELETE FROM atividade WHERE id_atividade = ?";
+         
+         PreparedStatement pre = conn.prepareStatement(sql);
+         pre.setInt(1, idAtividade);
+         if (pre.executeUpdate() > 0){             
+             return true;
+         }
+      } catch (SQLException e) {
+         System.out.println("Ocorreu um erro: " + e);
+      }
+      return false;
+   }
    
    public int geraIdAtividade(){
         int val = -1;

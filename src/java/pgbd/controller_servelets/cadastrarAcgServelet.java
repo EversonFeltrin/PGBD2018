@@ -24,7 +24,7 @@ import pgbd.model.Atividades;
  * @author efelt
  */
 @WebServlet(name = "cadastrarAcg", urlPatterns = {"/cadastrarAcg"})
-public class cadastrarAcg extends HttpServlet {
+public class cadastrarAcgServelet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
