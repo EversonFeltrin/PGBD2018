@@ -56,6 +56,7 @@ public class Alunos {
     public void setAtividades(ArrayList<Atividades> atividades) {
         this.atividades = atividades;
     }
+
    
    
 }

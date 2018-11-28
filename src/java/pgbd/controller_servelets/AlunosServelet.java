@@ -28,12 +28,15 @@ public class AlunosServelet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         String nome = req.getParameter("nome");
         String matricula = req.getParameter("matricula");
+        System.out.println(nome + " - " + matricula);
         int idAluno;
         Alunos aluno;
         //verifica se o aluno tem registro no banco de dados 
         aluno = new AlunosDAOPostgreSQL().read_aluno(nome, matricula);
         //caso não encontre o aluno cria um registro no banco e seta o idAluno
-        if (aluno == null){
+        System.out.println(aluno.getNome());
+        if (aluno.getNome() == null){
+//            System.out.println("Não encontrou nenhum aluno...\n");
             System.out.println("Aluno não está no BD, precisa cadastrar...\n");
             aluno.setNome(nome);
             aluno.setMatricula(matricula);
@@ -46,10 +49,14 @@ public class AlunosServelet extends HttpServlet {
         else{
             //caso o aluno exista no banco seta o idAluno
             idAluno = aluno.getIdAluno();
+            System.out.println("Encontrou aluno...\n");
         }
+        
+        System.out.println("Cadastrado idAluno " + idAluno);
         //verifica se existe um idAluno válido e redireciona      
         if(idAluno > 0){
             req.setAttribute("aluno", new AlunosDAOPostgreSQL().read_aluno(idAluno));
+            req.setAttribute("atividade", new AlunosDAOPostgreSQL().getAtividades(idAluno));
             RequestDispatcher disp = req.getRequestDispatcher("WEB-INF/views/dashboard.jsp");
             disp.forward(req, resp);
         }

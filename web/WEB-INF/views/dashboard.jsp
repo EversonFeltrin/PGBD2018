@@ -42,9 +42,18 @@
                     </form>
             </div>
             <div>
-                <h2><strong>Listagem de ACGs:</strong></h2>
+                <h2><strong>Listagem de ACGs:</strong></h2>         
                
-               
+                <!-- Observar que os campos seguem a nomenclatura do model -->
+                <c:forEach var="atividade" items="${atividade}">
+                  
+                    <li>                    
+                        ${atividade.idAtividade} - ${atividade.classificacao} - ${atividade.dataIni} -  ${atividade.dataFim} - 
+                        <!--<a href="http://localhost:8080/trats/associado?matricula=${assoc.matAssociado}&acao=editar">Editar</a> - 
+                        <a href="http://localhost:8080/trats/associado?matricula=${assoc.matAssociado}&acao=deletar">Deletar</a>
+                        -->
+                    <li>  
+                </c:forEach>
             
             </div>
         </div>

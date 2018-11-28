@@ -24,16 +24,8 @@ public class Atividades {
    private String atividadeDesenvolvida;
    private String dataSubmissao;
    private int idAluno;
-
-    public int getIdAluno() {
-        return idAluno;
-    }
-
-    public void setIdAluno(int idAluno) {
-        this.idAluno = idAluno;
-    }
    private Alunos aluno;
-
+    
     public int getIdAtividade() {
         return idAtividade;
     }
@@ -41,6 +33,15 @@ public class Atividades {
     public void setIdAtividade(int idAtividade) {
         this.idAtividade = idAtividade;
     }
+   
+    public int getIdAluno() {
+        return idAluno;
+    }
+
+    public void setIdAluno(int idAluno) {
+        this.idAluno = idAluno;
+    }
+   
 
     public String getClassificacao() {
         return classificacao;

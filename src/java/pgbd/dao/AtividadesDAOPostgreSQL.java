@@ -30,9 +30,9 @@ public class AtividadesDAOPostgreSQL {
    public int create(Atividades a) {
       a.setIdAtividade(geraIdAtividade());
       try (Connection conn = new ConectaDB_PostgreSQL().getConexao()){
-         String sql = "INSERT INTO atividade (idAtividade, classificacao, "
-                 + "localAtividade, dataIni, dataFim, cargaHoraria, "
-                 + "atividadeDesenvolvida, dataSubmissao, idAluno) "
+         String sql = "INSERT INTO atividade (id_atividade, classificacao, "
+                 + "local_atividade, data_ini, data_fim, carga_horaria, "
+                 + "atividade_desenvolvida, data_submissao, id_aluno) "
                  + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
  
          PreparedStatement pre = conn.prepareStatement(sql);
@@ -131,7 +131,7 @@ public class AtividadesDAOPostgreSQL {
    public int geraIdAtividade(){
         int val = -1;
         try(Connection conn = new ConectaDB_PostgreSQL().getConexao()){
-            String sql = "select max(idAluno) from atividade;";
+            String sql = "select max(id_atividade) from atividade;";
             PreparedStatement pre = conn.prepareStatement(sql);
             ResultSet rs = pre.executeQuery();
             rs.next();

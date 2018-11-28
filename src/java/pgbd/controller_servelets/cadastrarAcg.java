@@ -54,22 +54,12 @@ public class cadastrarAcg extends HttpServlet {
         else{
             System.out.println("Erro ao cadastrar atividade...\n");
         }
-//        
-//        
-//        ArrayList<Atividades> arrayAtiv = new ArrayList<Atividades>();  
-//        arrayAtiv = new AlunosDAOPostgreSQL().setArrayAtividades(arrayAtiv, at);
-//        aluno.setAtividades(arrayAtiv);
-//        
-////        arrayAtiv = new AlunosDAOPostgreSQL().setArrayAtividades(arrayAtiv, at);
-////        
-//////        aluno.setAtividades(arrayAtiv);
-////        
-////        req.setAttribute("aluno", new AlunosDAOPostgreSQL().read_aluno(aluno.getNome(), aluno.getMatricula()));
-////        req.setAttribute("acg", arrayAtiv);
-//        
-//        req.setAttribute("aluno", aluno.getAtividades());
-//        req.setAttribute("acg", new AlunosDAOPostgreSQL().setArrayAtividades(arrayAtiv, at));
-//        RequestDispatcher disp = req.getRequestDispatcher("WEB-INF/views/dashboard.jsp");
-//        disp.forward(req, resp);
+        int idAluno = aluno.getIdAluno();
+        System.out.println("Identificador de aluno para busca de atividades e aluno: " + idAluno);
+        RequestDispatcher disp;
+        req.setAttribute("aluno", new AlunosDAOPostgreSQL().read_aluno(idAluno));
+        req.setAttribute("atividade", new AlunosDAOPostgreSQL().getAtividades(idAluno));
+        disp = req.getRequestDispatcher("WEB-INF/views/dashboard.jsp");
+        disp.forward(req, resp);
     }
 }

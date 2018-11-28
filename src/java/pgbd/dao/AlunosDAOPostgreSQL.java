@@ -29,7 +29,7 @@ public class AlunosDAOPostgreSQL {
 //       int idAluno = geraIdAluno();
        a.setIdAluno(geraIdAluno());
        try(Connection conn = new ConectaDB_PostgreSQL().getConexao()) {
-         String sql = "INSERT INTO aluno(idAluno, nome, matricula) VALUES (?, ?, ?)";
+         String sql = "INSERT INTO aluno(id_aluno, nome, matricula) VALUES (?, ?, ?)";
          PreparedStatement pre = conn.prepareStatement(sql);
          pre.setInt(1, a.getIdAluno());
          pre.setString(2, a.getNome());
@@ -56,7 +56,7 @@ public class AlunosDAOPostgreSQL {
           
           Alunos a = new Alunos();
           while(rs.next()){
-              a.setIdAluno(rs.getInt("idAluno"));
+              a.setIdAluno(rs.getInt("id_aluno"));
               a.setNome(rs.getString("nome"));
               a.setMatricula(rs.getString("matricula"));
           }
@@ -69,7 +69,7 @@ public class AlunosDAOPostgreSQL {
    } 
    public Alunos read_aluno(int idAluno) {
       Alunos a = new Alunos();
-      String sql = "SELECT * FROM aluno WHERE idAluno = ?";
+      String sql = "SELECT * FROM aluno WHERE id_aluno = ?";
 
       try (Connection conn = new ConectaDB_PostgreSQL().getConexao()){
          PreparedStatement stmt = conn.prepareStatement(sql);
@@ -77,7 +77,7 @@ public class AlunosDAOPostgreSQL {
          ResultSet rs = stmt.executeQuery();
 
          while (rs.next()) {
-            a.setIdAluno(rs.getInt("idAluno"));
+            a.setIdAluno(rs.getInt("id_aluno"));
             a.setNome(rs.getString("nome"));
             a.setMatricula(rs.getString("matricula"));
          }
@@ -128,19 +128,49 @@ public class AlunosDAOPostgreSQL {
 //      }
 //   }
 //   
-//   public ArrayList<Atividades> setArrayAtividades(ArrayList<Atividades> arrayAtiv, Atividades at){
-//       arrayAtiv.add(at);
-//       return arrayAtiv;
-//   }
-//   
-////   public ArrayList<Atividades> getArrayAtividades(ArrayList<Atividades> arrayAtiv){
-////       
-////   }
-//   
+
+   public ArrayList<Atividades> getAtividades(int idAluno){
+       ArrayList<Atividades> atividades = new ArrayList<>();
+       try(Connection conn = new ConectaDB_PostgreSQL().getConexao()){
+           String sql = "SELECT * FROM atividade WHERE id_aluno = ?";
+           
+           PreparedStatement pre = conn.prepareStatement(sql);
+           pre.setInt(1, idAluno);
+           
+           ResultSet rs = pre.executeQuery();
+           
+           while(rs.next()){
+               Atividades ativ = new Atividades();
+               ativ.setIdAtividade(rs.getInt("id_atividade"));
+               System.out.println(rs.getInt("id_atividade"));
+               System.out.println(ativ.getIdAtividade());
+               ativ.setClassificacao(rs.getString("classificacao"));
+               System.out.println(ativ.getClassificacao());
+               ativ.setLocalAtividade(rs.getString("local_atividade"));
+               System.out.println(ativ.getLocalAtividade());
+               ativ.setDataIni(rs.getString("data_ini"));
+               System.out.println(ativ.getDataIni());
+               ativ.setDataFim(rs.getString("data_fim"));
+               System.out.println(ativ.getDataFim());
+               ativ.setCargaHoraria(rs.getInt("carga_horaria"));
+               System.out.println(ativ.getCargaHoraria());
+               ativ.setAtividadeDesenvolvida(rs.getString("atividade_desenvolvida"));
+               System.out.println(ativ.getAtividadeDesenvolvida());
+               ativ.setDataSubmissao(rs.getString("data_submissao"));
+               System.out.println(ativ.getDataSubmissao());
+               ativ.setIdAluno(rs.getInt("id_aluno"));
+               atividades.add(ativ);
+           }
+       }
+       catch(SQLException e){
+           e.printStackTrace();
+       }
+       return atividades;
+   }
    public int geraIdAluno(){
         int val = -1;
         try(Connection conn = new ConectaDB_PostgreSQL().getConexao()){
-            String sql = "select max(idAluno) from aluno;";
+            String sql = "select max(id_aluno) from aluno;";
             PreparedStatement pre = conn.prepareStatement(sql);
             ResultSet rs = pre.executeQuery();
             rs.next();
