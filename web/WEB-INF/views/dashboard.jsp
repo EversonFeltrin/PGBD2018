@@ -48,7 +48,15 @@
                 <c:forEach var="atividade" items="${atividade}">
                   
                     <li>                    
-                        ${atividade.idAtividade} - ${atividade.classificacao} - ${atividade.dataIni} -  ${atividade.dataFim} - 
+                        <p>Atividade: ${atividade.idAtividade} Classificação: ${atividade.classificacao} Local: ${atividade.localAtividade} </p>
+                        <p>Data de Início: ${atividade.dataIni} Data de Término:  ${atividade.dataFim} Carga Horária: ${atividade.cargaHoraria} </p>
+                        <p>Atividade Desenvolvida: ${atividade.atividadeDesenvolvida} </p> 
+                        <p>
+                            Data de Submissão: ${atividade.dataSubmissao}
+                            <a href="">Editar</a> 
+                            <a href="">Deletar</a>
+                            
+                        </p>
                         <!--<a href="http://localhost:8080/trats/associado?matricula=${assoc.matAssociado}&acao=editar">Editar</a> - 
                         <a href="http://localhost:8080/trats/associado?matricula=${assoc.matAssociado}&acao=deletar">Deletar</a>
                         -->
